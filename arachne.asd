@@ -9,5 +9,4 @@
   :components ((:file "package")
                (:file "src/http")
                (:file "src/url")
-               (:file "src/rules")
                (:file "src/arachne")))
