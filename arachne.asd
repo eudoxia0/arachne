@@ -1,12 +1,25 @@
-(asdf:defsystem #:arachne
-  :serial t
-  :description "This project aims to be a Scrapy-like web scraping framework for Common Lisp."
-  :author "Fernando Borretti <eudoxiahp@gmail.com>"
-  :license "MIT License"
-  :depends-on (#:drakma
-               #:closure-html
-               #:xpath)
-  :components ((:file "package")
-               (:file "src/http")
-               (:file "src/url")
-               (:file "src/arachne")))
+(defsystem arachne
+  :version "0.1"
+  :author "Fernando Borretti"
+  :license "MIT"
+  :depends-on (:plump
+               :drakma
+               :lquery
+               :trivial-types
+               :local-time)
+  :components ((:module "src"
+                :serial t
+                :components
+                ((:file "packages")
+                 (:module "http"
+                  :serial t
+                  :components
+                  ((:file "cookie")
+                   (:file "request")
+                   (:file "response")
+                   (:file "drakma"))))))
+  :description "A web-scraping framework."
+  :long-description
+  #.(uiop:read-file-string
+     (uiop:subpathname *load-pathname* "README.md"))
+  :in-order-to ((test-op (test-op arachne-test))))
