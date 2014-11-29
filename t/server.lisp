@@ -10,14 +10,15 @@
 (defparameter +port+ 4242)
 
 (defun make-url (&rest args)
-  (apply #'format (append (list nil "http://localhost:~A" +port+)
-                          args)))
+  (concatenate 'string
+               (format nil "http://localhost:~A" +port+)
+               (apply #'format (cons nil args))))
 
 (defapp app)
 
 @route app "/test"
 (defview test ()
-  (respond "Test Response"))
+  (respond "Test Response" :status 201))
 
 (defun start-server ()
   (start app :port +port+))

@@ -18,5 +18,9 @@
     'arachne.http:<response>))
   (is
    (equal
+    (arachne.http:response-status *response*)
+    201))
+  (is
+   (equal
     (arachne.http:response-body *response*)
     "Test Response")))
