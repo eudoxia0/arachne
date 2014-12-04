@@ -1,6 +1,7 @@
 (in-package :arachne.http)
 
 (defmethod cookie->drakma-cookie ((cookie <cookie>))
+  "Make a Drakma cookie from a <cookie> instance."
   (with-slots (name value expires domain path securep http-only-p)
       cookie
     (make-instance 'drakma:cookie
@@ -14,12 +15,14 @@
                    :http-only-p http-only-p)))
 
 (defun cookies->drakma-cookie-jar (cookies)
+  "Make a Drakma cookie jar from a list of <cookie> instances."
   (make-instance
    'drakma:cookie-jar
    :cookies (loop for cookie in cookies collecting
               (cookie->drakma-cookie cookie))))
 
 (defmethod drakma-cookie->cookie ((cookie drakma:cookie))
+  "Make a <cookie> from a Drakma cookie."
   (make-instance '<cookie>
                  :name (drakma:cookie-name cookie)
                  :value (drakma:cookie-value cookie)
@@ -31,10 +34,12 @@
                  :http-only-p (drakma:cookie-http-only-p cookie)))
 
 (defmethod drakma-cookie-jar->cookies ((cookie-jar drakma:cookie-jar))
+  "Make a list of <cookie> objects from a Drakma cookie jar."
   (loop for drakma-cookie in (drakma:cookie-jar-cookies cookie-jar) collecting
     (drakma-cookie->cookie drakma-cookie)))
 
 (defmethod send-request ((request <request>) form-data-p)
+  "Send a Drakma request from the data in a <request> instance."
   (let ((cookie-jar (cookies->drakma-cookie-jar (request-cookies request))))
     (response-from-drakma-values
      (multiple-value-list
@@ -54,12 +59,16 @@
  response."))
 
 (defmethod send ((request <request>))
+  "Send a regular request."
   (send-request request nil))
 
 (defmethod send ((request <form-request>))
+  "Send a form request."
   (send-request request t))
 
 (defun response-from-drakma-values (value-list request cookie-jar)
+  "Build a <response> instance from the value list of Drakma's `http-request`
+function, the original <request> instance, and the request's cookie jar."
   (destructuring-bind
       (body status headers uri stream must-close reason-phrase)
       value-list
