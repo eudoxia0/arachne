@@ -33,9 +33,9 @@
    (metadata :reader request-metadata
              :initarg :metadata
              :initform nil
-             :type association-list
-             :documentation "An association list containing request metadata,
-that will be copied to the corresponding response."))
+             :type hash-table
+             :documentation "A hash-table containing request metadata, that will
+be copied to the corresponding response."))
   (:documentation "A general HTTP request."))
 
 (defclass <form-request> (<request>) ()
