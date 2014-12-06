@@ -33,7 +33,9 @@ processing."
             :initarg :filters
             :initform nil
             :type (proper-list <filter>)
-            :documentation "A list of filter in the pipeline.")))
+            :documentation "A list of filter in the pipeline."))
+  (:documentation "A pipeline is a sequence of filters that successively filter
+ and process items."))
 
 (defmethod start-pipeline ((pipeline <pipeline>))
   "Go through the filters in the pipeline, calling their start methods."
