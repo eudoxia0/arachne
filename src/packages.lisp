@@ -60,11 +60,20 @@ returns the processed response."))
 
 (defpackage :arachne.worker
   (:use :cl :trivial-types)
-  (:export :<worker>))
+  (:export :<worker>)
+  (:documentation "A worker holds a downloader and a pipeline, and runs a spider
+ within the context of these: Using the downloader to download requests and the
+ pipeline to process scraped items."))
 
 (defpackage :arachne.spiders
-  (:use :cl :trivial-types))
+  (:use :cl :trivial-types)
+  (:documentation "Spiders are the unifying concept behind Arachne: They perform
+ the higher-level operations of scraping, like navigation and extracting data,
+ delegating the lower-level bits like handling requests to the downloader and
+ pipeline."))
 
 (defpackage :arachne.utils
   (:use :cl)
-  (:export :hash))
+  (:export :hash)
+  (:documentation "The utils package contains various useful utilities for
+ scraping."))
