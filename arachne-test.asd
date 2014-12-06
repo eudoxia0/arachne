@@ -10,4 +10,6 @@
                 ((:file "setup")
                  (:file "server")
                  (:file "http")
+                 (:file "downloader")
+                 (:file "items")
                  (:file "final")))))

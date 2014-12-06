@@ -6,7 +6,8 @@
                :drakma
                :lquery
                :trivial-types
-               :local-time)
+               :local-time
+               :cl-mop)
   :components ((:module "src"
                 :serial t
                 :components
@@ -17,7 +18,20 @@
                   ((:file "cookie")
                    (:file "request")
                    (:file "response")
-                   (:file "drakma"))))))
+                   (:file "drakma")))
+                 (:module "downloader"
+                  :serial t
+                  :components
+                  ((:file "middleware")
+                   (:file "downloader")))
+                 (:module "items"
+                  :serial t
+                  :components
+                  ((:file "item")
+                   (:file "pipeline")))
+                 (:file "worker")
+                 (:file "spiders")
+                 (:file "utils"))))
   :description "A web-scraping framework."
   :long-description
   #.(uiop:read-file-string
