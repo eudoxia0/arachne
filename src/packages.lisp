@@ -53,7 +53,10 @@ returns the processed response."))
            :<pipeline>
            :start-pipeline
            :stop-pipeline
-           :filter))
+           :filter)
+  (:documentation "Items represent a piece of data downloaded by a
+ spider. Pipelines are used to process items: They are a collection of filters,
+ which can either manipulate an item or drop it from the pipeline altogether."))
 
 (defpackage :arachne.worker
   (:use :cl :trivial-types)
