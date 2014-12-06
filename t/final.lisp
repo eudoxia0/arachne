@@ -4,5 +4,7 @@
   (arachne-test.server:start-server)
   (unwind-protect
        (progn
-         (run! 'http))
+         (run! 'http)
+         (run! 'downloader)
+         (run! 'items))
     (arachne-test.server:stop-server)))

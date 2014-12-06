@@ -14,7 +14,9 @@
 (defparameter +metadata-request+
   (make-instance 'arachne.http:<request>
                  :url (arachne-test.server:make-url "/test")
-                 :metadata (list (cons "Test" 'data))))
+                 :metadata (arachne.utils:hash
+                            (1 2)
+                            ("Test" "data"))))
 
 (defvar *response*)
 
@@ -52,7 +54,23 @@
   (is-true
    (typep
     *response*
-    'arachne.http:<response>)))
+    'arachne.http:<response>))
+    (is
+   (equal
+    (arachne.http:response-status *response*)
+    201))
+  (is
+   (equal
+    (arachne.http:response-body *response*)
+    "Test Response"))
+  (is
+   (equal
+    (gethash 1 (arachne.http:response-metadata *response*))
+    2))
+  (is
+   (equal
+    (gethash "Test" (arachne.http:response-metadata *response*))
+    "data")))
 
 (test clean-up
   (finishes
