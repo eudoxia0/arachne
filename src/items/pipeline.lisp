@@ -20,11 +20,11 @@
 
 (defgeneric filter (filter item)
   (:documentation "Takes the filter instance and an item as its arguments, and
-  returns either a new or modified item or nil to drop the item from
-  processing."))
+  returns either a new or modified item or raises <drop-item> to stop processing
+  of this item. In the latter case, the method returns nil."))
 
 (defmethod filter ((filter <filter>) (item <item>))
-  "The default filtering method: Simply returns the `<item`> without
+  "The default filtering method: Simply returns the `<item>` without
 processing."
   item)
 
