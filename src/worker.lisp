@@ -15,3 +15,6 @@
 
 (defmethod stop ((worker <worker>))
   (arachne.items:stop-pipeline (pipeline worker)))
+
+(defmethod filter ((worker <worker>) (item arachne.items:<item>))
+  (arachne.items:filter (pipeline worker) item))
