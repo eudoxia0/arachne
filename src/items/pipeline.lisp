@@ -50,4 +50,9 @@ processing."
 (defmethod filter ((pipeline <pipeline>) (item <item>))
   "Send an item through a pipeline. Returns an item, or nil if the item was
 rejected at some point during processing."
-  item)
+  (if (filters pipeline)
+      (let ((new-item item))
+        (loop for filter in (filters pipeline) do
+          (setf new-item (filter filter (copy new-item))))
+        new-item)
+      item))
