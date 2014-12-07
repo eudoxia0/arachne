@@ -21,7 +21,7 @@
 (defgeneric filter (filter item)
   (:documentation "Takes the filter instance and an item as its arguments, and
   returns either a new or modified item or raises <drop-item> to stop processing
-  of this item. In the latter case, the method returns nil."))
+  of this item."))
 
 (defmethod filter ((filter <filter>) (item <item>))
   "The default filtering method: Simply returns the `<item>` without
@@ -64,6 +64,9 @@ rejected at some point during processing."
   (if (filters pipeline)
       (let ((new-item item))
         (loop for filter in (filters pipeline) do
-          (setf new-item (filter filter (copy new-item))))
+          (handler-case
+              (setf new-item (filter filter (copy new-item)))
+            (<drop-item> (item filter)
+              (return-from filter nil))))
         new-item)
       item))

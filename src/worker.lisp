@@ -23,3 +23,7 @@
 t otherwise."
   (when (arachne.items:filter (pipeline worker) item)
     t))
+
+(defmethod send ((worker <worker>) (request arachne.http:<request>))
+  "Send a request through the worker's downloader."
+  (arachne.downloader:download (downloader worker) request))
