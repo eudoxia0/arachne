@@ -52,11 +52,35 @@
                  (make-instance '<uppercase-filter>)
                  (arachne.items:copy +test-item+)))))))
 
-(test empty-pipeline
-  (is-true t))
+(defparameter +empty-pipeline+
+  (make-instance 'arachne.items:<pipeline>))
 
-(test identity-pipeline
-  (is-true t))
+(defparameter +uppercase-pipeline+
+  (make-instance 'arachne.items:<pipeline>
+                 :filters (list (make-instance '<uppercase-filter>))))
+
+(defparameter +uppercase-lowercase-pipeline+
+  (make-instance 'arachne.items:<pipeline>
+                 :filters (list (make-instance '<uppercase-filter>)
+                                (make-instance '<lowercase-filter>))))
+
+(test empty-pipeline
+  (is
+   (equal "test"
+          (str (arachne.items:filter
+                +empty-pipeline+
+                (arachne.items:copy +test-item+))))))
+
+(test uppercase-pipeline
+  (is
+   (equal "TEST"
+          (str (arachne.items:filter
+                +uppercase-pipeline+
+                (arachne.items:copy +test-item+))))))
 
 (test complete-pipeline
-  (is-true t))
+  (is
+   (equal "test"
+          (str (arachne.items:filter
+                +uppercase-lowercase-pipeline+
+                (arachne.items:copy +test-item+))))))
