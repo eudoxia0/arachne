@@ -11,7 +11,7 @@
   as its sole argument."))
 
 (defmethod start ((filter <filter>))
-  "The default start method for filters. Does nothing."
+  "The default start method for filters.n Does nothing."
   t)
 
 (defmethod stop ((filter <filter>))
@@ -27,6 +27,17 @@
   "The default filtering method: Simply returns the `<item`> without
 processing."
   item)
+
+(define-condition <drop-item> (arachne.conditions:<arachne-condition>)
+  ((item :reader condition-item
+         :initarg :item
+         :type <item>
+         :documentation "The item that was dropped.")
+   (filter :reader condition-filter
+           :initarg :filter
+           :type <filter>
+           :documentation "The filter that dropped the item."))
+  (:documentation "This condition is raised when a filter in a pipeline rejects an item."))
 
 (defclass <pipeline> ()
   ((filters :reader filters
