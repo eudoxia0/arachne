@@ -1,5 +1,9 @@
 (in-package :cl-user)
 
+(defpackage arachne.conditions
+  (:use :cl)
+  (:export :<arachne-condition>))
+
 (defpackage arachne.http
   (:use :cl :trivial-types)
   (:export :<request>

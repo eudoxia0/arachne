@@ -12,6 +12,7 @@
                 :serial t
                 :components
                 ((:file "packages")
+                 (:file "conditions")
                  (:module "http"
                   :serial t
                   :components
