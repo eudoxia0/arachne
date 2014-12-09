@@ -64,7 +64,11 @@ returns the processed response."))
 
 (defpackage :arachne.worker
   (:use :cl :trivial-types)
-  (:export :<worker>)
+  (:export :<worker>
+           :start
+           :stop
+           :filter
+           :send)
   (:documentation "A worker holds a downloader and a pipeline, and runs a spider
  within the context of these: Using the downloader to download requests and the
  pipeline to process scraped items."))
