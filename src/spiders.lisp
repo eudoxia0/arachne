@@ -15,8 +15,10 @@
 `spider`."
   `(let ((*spider* ,spider))
      (arachne.worker:start (worker spider))
-     ,@body
-     (arachne.worker:stop (worker spider))))
+     (unwind-protect
+          (progn
+            ,@body)
+       (arachne.worker:stop (worker spider)))))
 
 (defmacro with-response ((response request) &rest body)
   "Send `request`, and assign its value to `response`. If the request went
