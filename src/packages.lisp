@@ -73,7 +73,7 @@ returns the processed response."))
  within the context of these: Using the downloader to download requests and the
  pipeline to process scraped items."))
 
-(defpackage :arachne.spiders
+(defpackage :arachne.spider
   (:use :cl :trivial-types)
   (:export :<spider>
            :with-response

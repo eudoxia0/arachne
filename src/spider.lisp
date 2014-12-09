@@ -1,4 +1,4 @@
-(in-package :arachne.spiders)
+(in-package :arachne.spider)
 
 (defvar *spider*)
 
