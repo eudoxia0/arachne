@@ -27,11 +27,13 @@
 
 (defmethod arachne.downloader:process-request ((middleware <test-middleware>)
                                                (request arachne.http:<request>))
-  (setf (gethash :request (arachne.http:request-metadata request)) t))
+  (setf (gethash :request (arachne.http:request-metadata request)) t)
+  request)
 
 (defmethod arachne.downloader:process-response ((middleware <test-middleware>)
                                                 (response arachne.http:<response>))
-  (setf (gethash :response (arachne.http:response-metadata response)) t))
+  (setf (gethash :response (arachne.http:response-metadata response)) t)
+  response)
 
 (test simple-download
   (let ((downloader
