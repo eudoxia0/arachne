@@ -14,7 +14,9 @@
   "Execute `body` with the value of the `*spider*` special variable set to
 `spider`."
   `(let ((*spider* ,spider))
-     ,@body))
+     (arachne.worker:start (worker spider))
+     ,@body
+     (arachne.worker:stop (worker spider))))
 
 (defmacro with-response ((response request) &rest body)
   "Send `request`, and assign its value to `response`. If the request went
@@ -27,3 +29,17 @@ through the middlewares, execute `body`."
 (defun pipe (item)
   "Send `item` through the current spider's pipeline."
   (arachne.worker:filter (worker *spider*) item))
+
+(defgeneric scrape (spider)
+  (:documentation "The main method of a spider, encapsulating the actual
+scraping functionality. When creating custom spiders, this is the method that
+should be subclassed, rather than `run`."))
+
+(defmethod scrape ((spider <spider>))
+  "The default scrape method. Do nothing."
+  t)
+
+(defmethod run ((spider <spider>))
+  "Run the spider."
+  (with-spider spider
+    (scrape spider)))
