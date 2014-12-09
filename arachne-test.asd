@@ -11,5 +11,5 @@
                  (:file "server")
                  (:file "http")
                  (:file "downloader")
-                 (:file "items")
+                 (:file "item")
                  (:file "final")))))
