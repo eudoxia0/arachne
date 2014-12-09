@@ -7,21 +7,21 @@
                :documentation "The downloader used by the worker to process requests.")
    (pipeline :reader pipeline
              :initarg :pipeline
-             :type arachne.items:<pipeline>
+             :type arachne.item:<pipeline>
              :documentation "The worker's item pipeline.")))
 
 (defmethod start ((worker <worker>))
   "Start the worker."
-  (arachne.items:start-pipeline (pipeline worker)))
+  (arachne.item:start-pipeline (pipeline worker)))
 
 (defmethod stop ((worker <worker>))
   "Stop the worker."
-  (arachne.items:stop-pipeline (pipeline worker)))
+  (arachne.item:stop-pipeline (pipeline worker)))
 
-(defmethod filter ((worker <worker>) (item arachne.items:<item>))
+(defmethod filter ((worker <worker>) (item arachne.item:<item>))
   "Filter an item through the worker's pipeline. Returns nil if it was rejected,
 t otherwise."
-  (when (arachne.items:filter (pipeline worker) item)
+  (when (arachne.item:filter (pipeline worker) item)
     t))
 
 (defmethod send ((worker <worker>) (request arachne.http:<request>))

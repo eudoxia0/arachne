@@ -3,25 +3,25 @@
 (def-suite items)
 (in-suite items)
 
-(defclass <test-item> (arachne.items:<item>)
+(defclass <test-item> (arachne.item:<item>)
   ((str :accessor str
         :initarg :str
         :type string)))
 
-(defclass <identity-filter> (arachne.items:<filter>) ())
+(defclass <identity-filter> (arachne.item:<filter>) ())
 
-(defclass <uppercase-filter> (arachne.items:<filter>) ())
+(defclass <uppercase-filter> (arachne.item:<filter>) ())
 
-(defclass <lowercase-filter> (arachne.items:<filter>) ())
+(defclass <lowercase-filter> (arachne.item:<filter>) ())
 
-(defmethod arachne.items:filter ((filter <identity-filter>) (item <test-item>))
+(defmethod arachne.item:filter ((filter <identity-filter>) (item <test-item>))
   item)
 
-(defmethod arachne.items:filter ((filter <uppercase-filter>) (item <test-item>))
+(defmethod arachne.item:filter ((filter <uppercase-filter>) (item <test-item>))
   (setf (str item) (string-upcase (str item)))
   item)
 
-(defmethod arachne.items:filter ((filter <lowercase-filter>) (item <test-item>))
+(defmethod arachne.item:filter ((filter <lowercase-filter>) (item <test-item>))
   (setf (str item) (string-downcase (str item)))
   item)
 
@@ -32,55 +32,55 @@
 (test identity-filter
   (is
    (equal "test"
-          (str (arachne.items:filter
+          (str (arachne.item:filter
                 (make-instance '<identity-filter>)
-                (arachne.items:copy +test-item+))))))
+                (arachne.item:copy +test-item+))))))
 
 (test uppercase-filter
   (is
    (equal "TEST"
-          (str (arachne.items:filter
+          (str (arachne.item:filter
                 (make-instance '<uppercase-filter>)
-                (arachne.items:copy +test-item+))))))
+                (arachne.item:copy +test-item+))))))
 
 (test uppercase-lowercase-filter
   (is
    (equal "test"
-          (str (arachne.items:filter
+          (str (arachne.item:filter
                 (make-instance '<lowercase-filter>)
-                (arachne.items:filter
+                (arachne.item:filter
                  (make-instance '<uppercase-filter>)
-                 (arachne.items:copy +test-item+)))))))
+                 (arachne.item:copy +test-item+)))))))
 
 (defparameter +empty-pipeline+
-  (make-instance 'arachne.items:<pipeline>))
+  (make-instance 'arachne.item:<pipeline>))
 
 (defparameter +uppercase-pipeline+
-  (make-instance 'arachne.items:<pipeline>
+  (make-instance 'arachne.item:<pipeline>
                  :filters (list (make-instance '<uppercase-filter>))))
 
 (defparameter +uppercase-lowercase-pipeline+
-  (make-instance 'arachne.items:<pipeline>
+  (make-instance 'arachne.item:<pipeline>
                  :filters (list (make-instance '<uppercase-filter>)
                                 (make-instance '<lowercase-filter>))))
 
 (test empty-pipeline
   (is
    (equal "test"
-          (str (arachne.items:filter
+          (str (arachne.item:filter
                 +empty-pipeline+
-                (arachne.items:copy +test-item+))))))
+                (arachne.item:copy +test-item+))))))
 
 (test uppercase-pipeline
   (is
    (equal "TEST"
-          (str (arachne.items:filter
+          (str (arachne.item:filter
                 +uppercase-pipeline+
-                (arachne.items:copy +test-item+))))))
+                (arachne.item:copy +test-item+))))))
 
 (test complete-pipeline
   (is
    (equal "test"
-          (str (arachne.items:filter
+          (str (arachne.item:filter
                 +uppercase-lowercase-pipeline+
-                (arachne.items:copy +test-item+))))))
+                (arachne.item:copy +test-item+))))))

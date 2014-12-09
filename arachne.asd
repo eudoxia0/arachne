@@ -25,7 +25,7 @@
                   :components
                   ((:file "middleware")
                    (:file "downloader")))
-                 (:module "items"
+                 (:module "item"
                   :serial t
                   :components
                   ((:file "item")

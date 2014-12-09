@@ -1,4 +1,4 @@
-(in-package :arachne.items)
+(in-package :arachne.item)
 
 (defclass <filter> () ())
 

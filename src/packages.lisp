@@ -46,7 +46,7 @@ request middlewares (Which can modify, or drop those requests), downloads them
 into responses, sends the response through the chain of middlewares, and finally
 returns the processed response."))
 
-(defpackage :arachne.items
+(defpackage :arachne.item
   (:use :cl :trivial-types)
   (:export :<item>
            :copy
