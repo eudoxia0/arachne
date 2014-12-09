@@ -3,41 +3,36 @@
 (def-suite http)
 (in-suite http)
 
-(defvar *response*)
+(defvar response)
 
 (test simple-request
   (let ((simple-request
-        (make-instance 'arachne.http:<request>
-                       :url (arachne-test.server:make-url "/test"))))
+          (make-instance 'arachne.http:<request>
+                         :url (arachne-test.server:make-url "/test")))
+        (response))
     (finishes
-      (setf *response* (arachne.http:send simple-request)))
+      (setf response (arachne.http:send simple-request)))
     (is-true
-     (typep
-      *response*
-      'arachne.http:<response>))
+     (typep response 'arachne.http:<response>))
     (is
-     (equal
-      (arachne.http:response-status *response*)
-      201))
+     (equal (arachne.http:response-status response)
+            201))
     (is
-     (equal
-      (arachne.http:response-body *response*)
-      "Test Response"))))
+     (equal (arachne.http:response-body response)
+            "Test Response"))))
 
 (test not-found-request
   (let ((not-found-request
           (make-instance 'arachne.http:<request>
-                         :url (arachne-test.server:make-url "/some-wrong-url"))))
+                         :url (arachne-test.server:make-url "/some-wrong-url")))
+        (response))
     (finishes
-      (setf *response* (arachne.http:send not-found-request)))
+      (setf response (arachne.http:send not-found-request)))
     (is-true
-     (typep
-      *response*
-      'arachne.http:<response>))
+     (typep response 'arachne.http:<response>))
     (is
-     (equal
-      (arachne.http:response-status *response*)
-      404))))
+     (equal (arachne.http:response-status response)
+            404))))
 
 (test metadata-request
   (let ((metadata-request
@@ -45,31 +40,21 @@
                          :url (arachne-test.server:make-url "/test")
                          :metadata (arachne.utils:hash
                                     (1 2)
-                                    ("Test" "data")))))
+                                    ("Test" "data"))))
+        (response))
     (finishes
-      (setf *response* (arachne.http:send metadata-request)))
+      (setf response (arachne.http:send metadata-request)))
     (is-true
-     (typep
-      *response*
-      'arachne.http:<response>))
+     (typep response 'arachne.http:<response>))
     (is
-     (equal
-      (arachne.http:response-status *response*)
-      201))
+     (equal (arachne.http:response-status response)
+            201))
     (is
-     (equal
-      (arachne.http:response-body *response*)
-      "Test Response"))
+     (equal (arachne.http:response-body response)
+            "Test Response"))
     (is
-     (equal
-      (gethash 1 (arachne.http:response-metadata *response*))
-      2))
+     (equal (gethash 1 (arachne.http:response-metadata response))
+            2))
     (is
-     (equal
-      (gethash "Test" (arachne.http:response-metadata *response*))
-      "data"))))
-
-(test clean-up
-  (finishes
-   ;; For future tests
-   (setf *response* nil)))
+     (equal (gethash "Test" (arachne.http:response-metadata response))
+            "data"))))
