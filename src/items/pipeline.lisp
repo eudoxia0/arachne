@@ -28,7 +28,7 @@
 processing."
   item)
 
-(define-condition <drop-item> (arachne.conditions:<arachne-condition>)
+(define-condition <drop-item> (arachne.condition:<arachne-condition>)
   ((item :reader condition-item
          :initarg :item
          :type <item>

@@ -1,3 +1,3 @@
-(in-package :arachne.conditions)
+(in-package :arachne.condition)
 
 (define-condition <arachne-condition> () ())

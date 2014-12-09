@@ -1,6 +1,6 @@
 (in-package :cl-user)
 
-(defpackage arachne.conditions
+(defpackage arachne.condition
   (:use :cl)
   (:export :<arachne-condition>))
 
