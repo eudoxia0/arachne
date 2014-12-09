@@ -75,6 +75,11 @@ returns the processed response."))
 
 (defpackage :arachne.spiders
   (:use :cl :trivial-types)
+  (:export :<spider>
+           :with-response
+           :pipe
+           :scrape
+           :run)
   (:documentation "Spiders are the unifying concept behind Arachne: They perform
  the higher-level operations of scraping, like navigation and extracting data,
  delegating the lower-level bits like handling requests to the downloader and
