@@ -32,7 +32,7 @@
                  :documentation "The request's content-type.")
    (metadata :reader request-metadata
              :initarg :metadata
-             :initform nil
+             :initform (make-hash-table)
              :type hash-table
              :documentation "A hash-table containing request metadata, that will
 be copied to the corresponding response."))

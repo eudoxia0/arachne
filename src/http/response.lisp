@@ -23,6 +23,7 @@
             :documentation "The cookies returned by the request.")
    (metadata :reader response-metadata
              :initarg :metadata
+             :initform (make-hash-table)
              :type hash-table
              :documentation "A hash-table containing metadata sent along with
  the request."))
