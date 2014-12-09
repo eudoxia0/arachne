@@ -1,4 +1,4 @@
-(in-package :arachne.utils)
+(in-package :arachne.util)
 
 (defmacro hash (&rest pairs)
   "Shortcut for building hash tables.

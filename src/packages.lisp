@@ -85,7 +85,7 @@ returns the processed response."))
  delegating the lower-level bits like handling requests to the downloader and
  pipeline."))
 
-(defpackage :arachne.utils
+(defpackage :arachne.util
   (:use :cl)
   (:export :hash)
   (:documentation "The utils package contains various useful utilities for

@@ -38,7 +38,7 @@
   (let ((metadata-request
           (make-instance 'arachne.http:<request>
                          :url (arachne-test.server:make-url "/test")
-                         :metadata (arachne.utils:hash
+                         :metadata (arachne.util:hash
                                     (1 2)
                                     ("Test" "data"))))
         (response))

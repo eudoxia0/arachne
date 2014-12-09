@@ -32,7 +32,7 @@
                    (:file "pipeline")))
                  (:file "worker")
                  (:file "spiders")
-                 (:file "utils"))))
+                 (:file "util"))))
   :description "A web-scraping framework."
   :long-description
   #.(uiop:read-file-string
