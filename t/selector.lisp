@@ -39,6 +39,34 @@
 (test css
   (let ((selector (make-instance 'arachne.selector:<selector>
                                  :text +simple-document+)))
-    (finishes
-      (print (arachne.selector:css selector "list > item"))
-      (print (arachne.selector:xpath selector "//item[@class='a']")))))
+    (is
+     (equal (arachne.selector:css selector "list > item")
+            "123"))
+    (is
+     (equal (arachne.selector:css selector "item:first-child")
+            "1"))
+    (is
+     (equal (arachne.selector:css selector ".a")
+            "23"))
+    (is
+     (equal (arachne.selector:css selector "list > .b")
+            "3"))))
+
+(test xpath
+  (let ((selector (make-instance 'arachne.selector:<selector>
+                                 :text +simple-document+)))
+    (is
+     (equal (arachne.selector:xpath selector "/list/item")
+            "123"))
+    (is
+     (equal (arachne.selector:xpath selector "/list/item[1]")
+            "1"))
+    (is
+     (equal (arachne.selector:xpath selector "//*[@class='a']")
+            "2"))
+    (is
+     (equal (arachne.selector:xpath selector "//*[contains(@class,'a')]")
+            "23"))
+    (is
+     (equal (arachne.selector:xpath selector "//item[contains(@class,'b')]")
+            "3"))))
