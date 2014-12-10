@@ -12,4 +12,5 @@
                  (:file "http")
                  (:file "downloader")
                  (:file "item")
+                 (:file "selector")
                  (:file "final")))))

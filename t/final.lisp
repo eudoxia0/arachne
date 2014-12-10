@@ -6,5 +6,6 @@
        (progn
          (run! 'http)
          (run! 'downloader)
-         (run! 'items))
+         (run! 'items)
+         (run! 'selector))
     (arachne-test.server:stop-server)))
