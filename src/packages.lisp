@@ -85,6 +85,12 @@ returns the processed response."))
  delegating the lower-level bits like handling requests to the downloader and
  pipeline."))
 
+(defpackage :arachne.selector
+  (:use :cl)
+  (:documentation "Implements an interface for extracting data from XML through
+ CSS selectors or XPath."))
+
+
 (defpackage :arachne.util
   (:use :cl)
   (:export :hash)

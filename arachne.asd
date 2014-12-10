@@ -32,6 +32,7 @@
                    (:file "pipeline")))
                  (:file "worker")
                  (:file "spider")
+                 (:file "selector")
                  (:file "util"))))
   :description "A web-scraping framework."
   :long-description
