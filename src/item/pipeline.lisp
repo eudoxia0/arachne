@@ -66,7 +66,8 @@ rejected at some point during processing."
         (loop for filter in (filters pipeline) do
           (handler-case
               (setf new-item (filter filter (copy new-item)))
-            (<drop-item> (item filter)
+            (<drop-item> (condition)
+              (declare (ignore condition))
               (return-from filter nil))))
         new-item)
       item))
