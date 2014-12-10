@@ -35,6 +35,10 @@
              (plump:serialize (plump-document selector) str))
            (stp:make-builder)))))
 
+(defmacro with-selector ((sel response) &rest body)
+  `(let ((,sel (make-instance '<selector> :response ,response)))
+     ,@body))
+
 (defmethod css ((selector <selector>) css-selector)
   (clss:select css-selector (plump-document selector)))
 
