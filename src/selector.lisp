@@ -45,4 +45,8 @@
                 collecting (plump:text node))))
 
 (defmethod xpath ((selector <selector>) xpath-selector)
-  (xpath:string-value (xpath:evaluate xpath-selector (cxml-document selector))))
+  (reduce #'(lambda (l r) (concatenate 'string l r))
+          (loop for node in (xpath:all-nodes
+                             (xpath:evaluate xpath-selector
+                                             (cxml-document selector)))
+                collecting (xpath:string-value node))))
