@@ -40,7 +40,9 @@
      ,@body))
 
 (defmethod css ((selector <selector>) css-selector)
-  (clss:select css-selector (plump-document selector)))
+  (reduce #'(lambda (l r) (concatenate 'string l r))
+          (loop for node across (clss:select css-selector (plump-document selector))
+                collecting (plump:text node))))
 
 (defmethod xpath ((selector <selector>) xpath-selector)
-  (xpath:evaluate xpath-selector (cxml-document selector)))
+  (xpath:string-value (xpath:evaluate xpath-selector (cxml-document selector))))
