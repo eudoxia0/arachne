@@ -5,7 +5,8 @@
   :depends-on (:drakma
                :plump
                :clss
-               :lquery
+               :xpath
+               :cxml-stp
                :trivial-types
                :local-time
                :cl-mop)

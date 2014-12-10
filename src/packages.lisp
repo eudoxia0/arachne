@@ -91,7 +91,8 @@ returns the processed response."))
            :text
            :response
            :<empty-selector>
-           :css)
+           :css
+           :xpath)
   (:documentation "Implements an interface for extracting data from XML through
  CSS selectors or XPath."))
 
