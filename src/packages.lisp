@@ -2,7 +2,8 @@
 
 (defpackage arachne.condition
   (:use :cl)
-  (:export :<arachne-condition>))
+  (:export :<arachne-condition>)
+  (:documentation "General Arachne conditions."))
 
 (defpackage arachne.http
   (:use :cl :trivial-types)

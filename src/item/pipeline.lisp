@@ -1,6 +1,8 @@
 (in-package :arachne.item)
 
-(defclass <filter> () ())
+(defclass <filter> ()
+  ()
+  (:documentation "The base class of all filters."))
 
 (defgeneric start (filter)
   (:documentation "Executed when the pipeline starts, taking the filter instance
