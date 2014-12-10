@@ -87,6 +87,11 @@ returns the processed response."))
 
 (defpackage :arachne.selector
   (:use :cl)
+  (:export :<selector>
+           :text
+           :response
+           :<empty-selector>
+           :css)
   (:documentation "Implements an interface for extracting data from XML through
  CSS selectors or XPath."))
 

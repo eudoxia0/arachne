@@ -2,8 +2,9 @@
   :version "0.1"
   :author "Fernando Borretti"
   :license "MIT"
-  :depends-on (:plump
-               :drakma
+  :depends-on (:drakma
+               :plump
+               :clss
                :lquery
                :trivial-types
                :local-time

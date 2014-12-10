@@ -1,15 +1,15 @@
 (in-package :arachne.selector)
 
 (defclass <selector> ()
-  ((node :accessor node
-         :initarg :node
-         :type plump:node)
-   (text :reader text
+  ((text :reader text
          :initarg :text
          :type string)
    (response :reader response
              :initarg :response
-             :type arachne.http:<request>)))
+             :type arachne.http:<request>)
+   (xml-node :accessor xml-node
+             :initarg :xml-node
+             :type plump:node)))
 
 (define-condition <empty-selector> (arachne.condition:<arachne-condition>)
   ()
@@ -19,10 +19,14 @@
      (format stream "Can't create a selector without a text or response."))))
 
 (defmethod initialize-instance :after ((selector <selector>) &key)
-  (with-slots (text response) selector
-    (if text
-        (setf (node selector) (plump:parse text))
-        (if response
-            (setf (node selector)
-                  (plump:parse (arachne.http:response-body response)))
-            (error '<empty-selector>)))))
+  (let ((text
+          (with-slots (text response) selector
+            (if text
+                text
+                (if response
+                    (arachne.http:response-body response)
+                    (error '<empty-selector>))))))
+    (setf (xml-node selector) (plump:parse selector))))
+
+(defmethod css ((selector <selector>) css-selector)
+  (clss:select css-selector (node selector)))
