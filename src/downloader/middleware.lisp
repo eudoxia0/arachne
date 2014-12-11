@@ -2,7 +2,7 @@
 
 (defclass <middleware> ()
   ()
-  (:documentation "The base class of all downloader middlewares.")
+  (:documentation "The base class of all downloader middlewares."))
 
 (defgeneric process-request (middleware request)
   (:documentation "The `process-request` method takes as its second argument a
