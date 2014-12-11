@@ -14,11 +14,11 @@
   "Execute `body` with the value of the `*spider*` special variable set to
 `spider`."
   `(let ((*spider* ,spider))
-     (arachne.worker:start (worker spider))
+     (arachne.worker:start (worker *spider*))
      (unwind-protect
           (progn
             ,@body)
-       (arachne.worker:stop (worker spider)))))
+       (arachne.worker:stop (worker *spider*)))))
 
 (defmacro with-response ((response request) &rest body)
   "Send `request`, and assign its value to `response`. If the request went
