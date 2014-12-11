@@ -7,5 +7,6 @@
          (run! 'http)
          (run! 'downloader)
          (run! 'items)
-         (run! 'selector))
+         (run! 'selector)
+         (run! 'integration))
     (arachne-test.server:stop-server)))

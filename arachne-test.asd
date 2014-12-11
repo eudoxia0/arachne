@@ -13,4 +13,5 @@
                  (:file "downloader")
                  (:file "item")
                  (:file "selector")
+                 (:file "integration")
                  (:file "final")))))
