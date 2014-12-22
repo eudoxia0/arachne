@@ -9,6 +9,23 @@
   (:documentation "A downloader object. Contains a list of middlewares to apply
   to requests and responses."))
 
+(define-condition <middleware-condition> (arachne.condition:<arachne-condition>)
+  ((middleware :reader condition-middlewre
+               :initarg :middleware
+               :type <middleware>)))
+
+(define-condition <drop-request> (<middleware-condition>)
+  ((request :reader condition-request
+            :initarg :request
+            :type arachne.http:<request>
+            :documentation "The request that was dropped.")))
+
+(define-condition <drop-response> (<middleware-condition>)
+  ((response :reader condition-response
+            :initarg :response
+            :type arachne.http:<response>
+            :documentation "The response that was dropped.")))
+
 (defmethod apply-request-middlewares ((downloader <downloader>)
                                       (request arachne.http:<request>))
   "Take a downloader and a request, and apply all the middlewares in the

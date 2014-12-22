@@ -40,6 +40,11 @@
   (:export :<middleware>
            :process-request
            :process-response
+           :<drop-request>
+           :<drop-response>
+           :condition-middleware
+           :condition-request
+           :condition-response
            :<downloader>
            :download)
   (:documentation "The Downloader downloads takes requests, passes them through
@@ -97,7 +102,6 @@ returns the processed response."))
            :xpath)
   (:documentation "Implements an interface for extracting data from XML through
  CSS selectors or XPath."))
-
 
 (defpackage :arachne.util
   (:use :cl)
