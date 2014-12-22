@@ -14,6 +14,7 @@
                 :serial t
                 :components
                 ((:file "packages")
+                 (:file "internal-utils")
                  (:file "condition")
                  (:module "http"
                   :serial t

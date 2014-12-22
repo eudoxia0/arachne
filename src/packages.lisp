@@ -1,5 +1,10 @@
 (in-package :cl-user)
 
+(defpackage :arachne.internal-utils
+  (:use :cl)
+  (:export :object-pipeline)
+  (:documentation "Internal utilities for other parts of Arachne itself."))
+
 (defpackage arachne.condition
   (:use :cl)
   (:export :<arachne-condition>)
