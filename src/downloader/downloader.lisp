@@ -31,24 +31,24 @@
   "Take a downloader and a request, and apply all the middlewares in the
 downloader to the request. Returns the final request, or `nil`, indicating that
 the request should be ignored."
-  (let ((processed-request request))
-    (loop for mw in (middlewares downloader) do
-      (setf processed-request (process-request mw processed-request))
-      (unless processed-request ;; If the request is nil, abort
-        (return-from apply-request-middlewares nil)))
-    processed-request))
+  (arachne.internal-utils:object-pipeline request
+                                          processed-request
+                                          (middlewares downloader)
+                                          middleware
+                                          (process-request middleware processed-request)
+                                          <drop-request>))
 
 (defmethod apply-response-middlewares ((downloader <downloader>)
                                        (response arachne.http:<response>))
   "Take a downloader and a response, and apply all the middlewares in the
 downloader to the response. Returns the final response, or `nil`, indicating
 that the response should be ignored."
-  (let ((processed-response response))
-    (loop for mw in (middlewares downloader) do
-      (setf processed-response (process-response mw processed-response))
-      (unless processed-response ;; If the response is nil, abort
-        (return-from apply-response-middlewares nil)))
-    processed-response))
+  (arachne.internal-utils:object-pipeline response
+                                          processed-response
+                                          (middlewares downloader)
+                                          middleware
+                                          (process-response middleware processed-response)
+                                          <drop-response>))
 
 (defmethod download ((downloader <downloader>)
                      (request arachne.http:<request>))
