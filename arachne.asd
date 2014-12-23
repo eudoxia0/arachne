@@ -33,7 +33,7 @@
                   :components
                   ((:file "item")
                    (:file "pipeline")))
-                 (:file "worker")
+                 (:file "settings")
                  (:file "spider")
                  (:file "selector")
                  (:file "util"))))

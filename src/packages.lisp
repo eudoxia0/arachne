@@ -73,16 +73,13 @@ returns the processed response."))
  spider. Pipelines are used to process items: They are a collection of filters,
  which can either manipulate an item or drop it from the pipeline altogether."))
 
-(defpackage arachne.worker
-  (:use :cl :trivial-types)
-  (:export :<worker>
-           :start
-           :stop
-           :filter
-           :send)
-  (:documentation "A worker holds a downloader and a pipeline, and runs a spider
- within the context of these: Using the downloader to download requests and the
- pipeline to process scraped items."))
+(defpackage arachne.settings
+  (:use :cl)
+  (:export :<settings>
+           :downloader
+           :pipeline)
+  (:documentation "Settings are used to control configuration of different parts
+  of a spider, and can be reused for multiple spiders."))
 
 (defpackage arachne.spider
   (:use :cl :trivial-types)
