@@ -45,4 +45,5 @@ should be subclassed, rather than `run`."))
 (defmethod run ((spider <spider>))
   "Run the spider."
   (with-spider spider
-    (scrape spider)))
+    (scrape spider))
+  t)
