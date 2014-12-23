@@ -40,7 +40,7 @@
   (:documentation "Implements requests and responses and the machinery to send
  and receive them through Drakma."))
 
-(defpackage :arachne.downloader
+(defpackage arachne.downloader
   (:use :cl :trivial-types)
   (:export :<middleware>
            :process-request
@@ -57,7 +57,7 @@ request middlewares (Which can modify, or drop those requests), downloads them
 into responses, sends the response through the chain of middlewares, and finally
 returns the processed response."))
 
-(defpackage :arachne.item
+(defpackage arachne.item
   (:use :cl :trivial-types)
   (:export :<item>
            :copy
@@ -73,7 +73,7 @@ returns the processed response."))
  spider. Pipelines are used to process items: They are a collection of filters,
  which can either manipulate an item or drop it from the pipeline altogether."))
 
-(defpackage :arachne.worker
+(defpackage arachne.worker
   (:use :cl :trivial-types)
   (:export :<worker>
            :start
@@ -84,7 +84,9 @@ returns the processed response."))
  within the context of these: Using the downloader to download requests and the
  pipeline to process scraped items."))
 
-(defpackage :arachne.spider
+(defpack
+
+(defpackage arachne.spider
   (:use :cl :trivial-types)
   (:export :<spider>
            :with-response
@@ -96,7 +98,7 @@ returns the processed response."))
  delegating the lower-level bits like handling requests to the downloader and
  pipeline."))
 
-(defpackage :arachne.selector
+(defpackage arachne.selector
   (:use :cl)
   (:export :<selector>
            :text
@@ -108,7 +110,7 @@ returns the processed response."))
   (:documentation "Implements an interface for extracting data from XML through
  CSS selectors or XPath."))
 
-(defpackage :arachne.util
+(defpackage arachne.util
   (:use :cl)
   (:export :hash)
   (:documentation "The utils package contains various useful utilities for
