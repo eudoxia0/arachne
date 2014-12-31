@@ -7,6 +7,8 @@ env:
 install:
   # Install cl-travis
   - curl https://raw.githubusercontent.com/luismbo/cl-travis/master/install.sh | bash
+  # Clone cl-mop
+  - git clone https://github.com/Inaimathi/cl-mop.git quicklisp/local-projects/cl-mop
 
 script:
   - cl -e '(ql:quickload :fiveam)'
