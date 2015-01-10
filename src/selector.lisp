@@ -7,7 +7,7 @@
          :documentation "XML string used to initialize the selector.")
    (response :reader response
              :initarg :response
-             :type arachne.http:<request>
+             :type arachne.http:<response>
              :documentation "Response whose body is used to initialize the selector.")
    (plump-document :accessor plump-document
                    :type plump:node
