@@ -1,8 +1,11 @@
 (defsystem arachne
-  :version "0.1"
-  :author "Fernando Borretti"
+  :author "Fernando Borretti <eudoxiahp@gmail.com>"
+  :maintainer "Fernando Borretti <eudoxiahp@gmail.com>"
   :license "MIT"
+  :version "0.1"
   :homepage "https://github.com/eudoxia0/arachne"
+  :bug-tracker "https://github.com/eudoxia0/arachne/issues"
+  :source-control (:git "git@github.com:eudoxia0/arachne.git")
   :depends-on (:drakma
                :plump
                :clss
